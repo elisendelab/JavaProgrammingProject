@@ -34,5 +34,3 @@
 34,Niel Young,3000012,niel@gmail.com,Nikon,Dirty Image Sensor,Settled
 35,Angel Smith,3395560,angel@yahoo.com,Kodak,Firmware Update,Pending
 36,Sydney Webb,3367854,sydney@gmail.com,Olympus,Firmware Update,Settled
-37,Jethro Gibbs,12345678,gibbs@gmail.com,Olympus,Fungus in Lens,Pending
-38,Jethro Gibbs,1234578,gibbs@gmail.com,Olympus,Fungus in Lens,Pending
