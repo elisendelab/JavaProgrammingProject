@@ -16,70 +16,107 @@ public class InventoryManagement {
         totalCustomers = 0;
     }
 
-    public void addNewStock() {
-    	while(true) {
-	        System.out.println("\n\nEnter stock item:");
-	        String item = scanner.nextLine();
-	        System.out.println("Enter stock quantity:");
-	        int quantity = scanner.nextInt();
-	        scanner.nextLine(); // Consume newline
-	        
-	        Stock newStock = new Stock(item, quantity);
-	        stocks.add(newStock);
-	        System.out.println("New stock item added successfully!");
-	        System.out.println("Do you want to add another stock item? (yes/no)");
-	        String choice = scanner.nextLine();
-	        if (choice.equalsIgnoreCase("yes")) {
-		        continue;
-		    }
-		    else if (choice.equalsIgnoreCase("no")) {
-		        break; // Exit the loop and return to the menu
-		    }
-		    else {
-		    	System.out.println("Invalid input. Returning to menu.");
-		    	break;
-		    }
-	    }
-    }
+    public void addNewStock(){
+        while (true){
+            System.out.println("\n\nEnter stock item:");
+            String item = scanner.nextLine();
 
-    public void updateStockQuantity(String item, int quantity) {
-    	while(true) {
-	        Stock stock = findStock(item);
-	        if (stock != null) {
-	            stock.setQuant(quantity);
-	            System.out.println(stock.getItem() + " quantity updated to " + stock.getQuant() + ".");
-	        } 
-	        else {
-	            System.out.println("Stock not found in the inventory.");
-	        }
-	        System.out.println("Do you want to update another stock item? (yes/no)");
-	        String choice = scanner.nextLine();
-	        if (choice.equalsIgnoreCase("yes")) {
-		        continue;
-		    }
-		    else if (choice.equalsIgnoreCase("no")) {
-		        break; // Exit the loop and return to the menu
-		    }
-		    else {
-		    	System.out.println("Invalid input. Returning to menu.");
-		    	break;
-		    }
-	    }
-    }
-
-    public Stock findStock(String item) {
-        for (Stock stock : stocks) {
-            if (stock.getItem().equalsIgnoreCase(item)) {
-                return stock;
+            boolean existing=false;
+            for (Stock s:stocks){
+                if (s.getItem().equalsIgnoreCase(item)){
+                	existing=true;
+                    break;
+                }
+            }
+            if (existing){
+                System.out.println("Not added. "+item+ " is already in the stock list.");
+            } 
+            else {
+            	int quantity=0;
+                boolean isnum=false;
+                
+                while (!isnum){
+                    try{
+                        System.out.println("Enter stock quantity:");
+                        quantity = scanner.nextInt();
+                        scanner.nextLine();
+                        isnum = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a number for quantity.");
+                        scanner.nextLine();
+                    }
+                }
+                
+                Stock newStock= new Stock(item, quantity);
+                stocks.add(newStock);
+                System.out.println("New stock item was added successfully!");
+            }
+            System.out.println("Do you want to add another stock item? (y/n)");
+            String choice = scanner.nextLine();
+            if (choice.equalsIgnoreCase("y")) {
+            	continue;
+            } 
+            else if (choice.equalsIgnoreCase("n")) {
+            	break;
+            } 
+            else{
+            	System.out.println("Invalid input. Returning to menu.");
+            	break;
             }
         }
-        return null;
     }
-    
+
+
+    public void updateStockQuantity() {
+        boolean found = false;
+        while (true){
+            System.out.print("Enter stock item: ");
+            String item = scanner.nextLine();
+
+            for (Stock stock:stocks){
+                if (stock.getItem().equalsIgnoreCase(item)){
+                    found = true;
+                    System.out.println("Current quantity of "+item +": "+stock.getQuant());
+
+                    int newQuant=0;
+                    boolean isnum=false;
+
+                    while (!isnum){
+                        try {
+                            System.out.print("Enter new quantity: ");
+                            newQuant = scanner.nextInt();
+                            scanner.nextLine(); 
+                            isnum = true; 
+                        }catch (InputMismatchException e) {
+                            System.out.println("Invalid input. Please enter a number for quantity.");
+                            scanner.nextLine();
+                        }
+                    }
+
+                    stock.setQuant(newQuant);
+                    System.out.println(item+" quantity updated to " +stock.getQuant() + ".");
+                }
+            }
+            if (!found) {
+                System.out.println("Stock item '" +item+ "' not found in the inventory.");
+            }
+
+            System.out.print("Do you want to update another stock item? (y/n): ");
+            String choice = scanner.nextLine();
+            if (choice.equalsIgnoreCase("n")) {
+                break;
+            } 
+            else if (!choice.equalsIgnoreCase("y")){
+                System.out.println("Invalid input. Returning to menu.");
+                break;
+            }
+        }
+    }
+
     public void allStock() {
     	System.out.println("\n\n");
-        for (Stock s : stocks) {
-        	System.out.printf("%-15s %-10d%n", s.getItem(), s.getQuant());
+        for (Stock s:stocks) {
+        	System.out.printf("%-15s %-10d%n",s.getItem(), s.getQuant());
 
         }
         returnToMenu();
@@ -88,9 +125,9 @@ public class InventoryManagement {
     public void printStockReport() {
     	System.out.println("\n\nStock Report:\n");
         System.out.println("Items that need to be restocked (quantity less than 4):\n");
-        for (Stock s : stocks) {
-            if (s.getQuant() < 4) {
-            	System.out.printf("%-15s %-10d%n", s.getItem(), s.getQuant());
+        for (Stock s:stocks) {
+            if (s.getQuant() < 4){
+            	System.out.printf("%-15s %-10d%n",s.getItem(), s.getQuant());
             }
         }
         returnToMenu();
@@ -99,7 +136,7 @@ public class InventoryManagement {
 
     public void addCustomer() {
     	while (true) {
-	        int nextId = totalCustomers + 1;
+	        int nextId = totalCustomers+1;
 	        System.out.println("\n\nEnter customer name:");
 	        String name = scanner.nextLine();
 	        System.out.println("Enter customer phone number:");
@@ -111,17 +148,17 @@ public class InventoryManagement {
 	        System.out.println("Enter camera problem:");
 	        String cam_prob = scanner.nextLine();
 	        
-	        Customer newCustomer = new Customer(String.valueOf(nextId), name, phone_num, email, cam_type, cam_prob, "Pending");
+	        Customer newCustomer= new Customer(String.valueOf(nextId), name, phone_num, email, cam_type, cam_prob, "Pending");
 	        customers.add(newCustomer);
-	        totalCustomers++; // Increment the total number of customers
+	        totalCustomers++; 
 	        System.out.println("New customer added successfully!");
-	        System.out.println("Do you want to add another customer? (yes/no)");
+	        System.out.println("Do you want to add another customer? (y/n)");
 	        String choice = scanner.nextLine();
-	        if (choice.equalsIgnoreCase("yes")) {
+	        if (choice.equalsIgnoreCase("y")) {
 		        continue;
 		    }
-		    else if (choice.equalsIgnoreCase("no")) {
-		        break; // Exit the loop and return to the menu
+		    else if (choice.equalsIgnoreCase("n")) {
+		        break;
 		    }
 		    else {
 		    	System.out.println("Invalid input. Returning to menu.");
@@ -145,7 +182,7 @@ public class InventoryManagement {
 	            System.out.println("4. Camera Type");
 	            System.out.println("5. Camera Problem");
 	            System.out.println("6. Status");
-	            System.out.print("Enter your choice: ");
+	            System.out.print("Enter your choice (the number only): ");
 	            int choice = scanner.nextInt();
 	            scanner.nextLine();
 	
@@ -193,14 +230,14 @@ public class InventoryManagement {
 	        else {
 	            System.out.println("Customer not found.");
 	        }
-	        System.out.println("\nDo you want to update another customer record? (yes/no)");
+	        System.out.println("\nDo you want to update another customer record? (y/n)");
 		    String choice = scanner.nextLine();
-		    if (choice.equalsIgnoreCase("yes")) {
+		    if (choice.equalsIgnoreCase("y")) {
 		    	System.out.print("Enter customer ID: ");
                 id = scanner.nextLine();
 		    }
-		    else if (choice.equalsIgnoreCase("no")) {
-		        break; // Exit the loop and return to the menu
+		    else if (choice.equalsIgnoreCase("n")) {
+		        break; 
 		    }
 		    else {
 		    	System.out.println("Invalid input. Returning to menu.");
@@ -213,12 +250,12 @@ public class InventoryManagement {
     public void findCustomer() {
         while (true) {
         	System.out.println("\n\nDo you want to search for a customer by ID or by name? (id/name)");
-            String ans = scanner.nextLine();
+            String ans=scanner.nextLine();
             
             if (ans.equalsIgnoreCase("id")) {
                 System.out.println("Enter customer ID to search:");
-                String id = scanner.nextLine();
-                boolean found = false;
+                String id= scanner.nextLine();
+                boolean found=false;
                 for (Customer c : customers) {
                     if (c.getId().equals(id)) {
                         System.out.println(c.getRecord());
@@ -226,7 +263,7 @@ public class InventoryManagement {
                         break;
                     }
                 }
-                if (!found) {
+                if (!found){
                     System.out.println("Customer name not found.");
                 }
             } 
@@ -234,10 +271,10 @@ public class InventoryManagement {
                 System.out.println("Enter customer name to search:");
                 String name = scanner.nextLine();
                 boolean found = false;
-                for (Customer c : customers) {
-                    if (c.getName().equalsIgnoreCase(name)) {
+                for (Customer c : customers){
+                    if (c.getName().equalsIgnoreCase(name)){
                         System.out.println(c.getRecord());
-                        found = true;
+                        found =true;
                         break;
                     }
                 }
@@ -248,13 +285,13 @@ public class InventoryManagement {
             else {
                 System.out.println("Invalid input");
             }
-		    System.out.println("\nDo you want to search for another customer? (yes/no)");
-		    String choice = scanner.nextLine();
-		    if (choice.equalsIgnoreCase("yes")) {
+		    System.out.println("\nDo you want to search for another customer? (y/n)");
+		    String choice =scanner.nextLine();
+		    if (choice.equalsIgnoreCase("y")) {
 		        continue;
 		    }
-		    else if (choice.equalsIgnoreCase("no")) {
-		        break; // Exit the loop and return to the menu
+		    else if (choice.equalsIgnoreCase("n")) {
+		        break;
 		    }
 		    else {
 		    	System.out.println("Invalid input. Returning to menu.");
@@ -296,7 +333,7 @@ public class InventoryManagement {
     	System.out.println("\nDo you want to return to the menu or exit the program? (m/e)");
         String choice = scanner.nextLine();
         if (choice.equalsIgnoreCase("m")) {
-            return; // Return to the menu
+            return;
         } 
         else if (choice.equalsIgnoreCase("e")) {
         	exitProgram();
@@ -309,23 +346,23 @@ public class InventoryManagement {
 
     public void readStockFile(String fileName) {
         try {
-            File file = new File(fileName);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String[] data = scanner.nextLine().split(",");
+            File file=new File(fileName);
+            Scanner scanners =new Scanner(file);
+            while (scanners.hasNextLine()) {
+                String[] data = scanners.nextLine().split(",");
                 if (data.length >= 2) {
                     String item = data[0];
-                    int quantity = Integer.parseInt(data[1]);
+                    int quantity = Integer.valueOf(data[1]);
                     stocks.add(new Stock(item, quantity));
                 } 
                 else {
-                    System.out.println("Invalid stock record format: " + scanner.nextLine());
+                    System.out.println("Invalid stock record format: " + scanners.nextLine());
                 }
             }
-            scanner.close();
+            scanners.close();
         } 
-        catch (FileNotFoundException e) {
-            System.out.println("Stock file not found.");
+        catch (FileNotFoundException e){
+            System.out.println("Stock file was not found.");
         }
     }
 
@@ -354,19 +391,19 @@ public class InventoryManagement {
             scanner.close();
         } 
         catch (FileNotFoundException e) {
-            System.out.println("Customer file not found.");
+            System.out.println("Customer was file not found.");
         }
     }
 
 
     public void writeStockFile(String fileName) {
         try {
-            FileWriter writer = new FileWriter(fileName);
-            for (Stock stock : stocks) {
+            FileWriter writer=new FileWriter(fileName);
+            for (Stock stock:stocks) {
                 writer.write(stock.getItem() + "," + stock.getQuant() + "\n");
             }
             writer.close();
-        } catch (IOException e) {
+        } catch (IOException e){
             System.out.println("Error writing to stock file.");
         }
     }
@@ -374,7 +411,7 @@ public class InventoryManagement {
     public void writeCustomerFile(String fileName) {
         try {
             FileWriter writer = new FileWriter(fileName);
-            for (Customer customer : customers) {
+            for (Customer customer : customers){
                 writer.write(customer.getId() + "," + customer.getName() + "," + customer.getPhone_num() + ","
                         + customer.getEmail() + "," + customer.getCam_type() + "," + customer.getCam_prob() + ","
                         + customer.getStatus() + "\n");
