@@ -1,0 +1,38 @@
+1,James Ford,5023593,james@gmail.com,Sony,Firmware Update,Pending
+2,Kate Austen,9902720,kate@yahoo.com,Nikon,Dirty Image Sensor,Settled
+3,Jack Shepards,3434870,jack@gmail.com,Canon,Fungus In Lens,Settled
+4,Hugo Reyes,3874335,hugo@gmail.com,Canon,Damaged Card Reader,Pending
+5,Boone Carlyle,5324760,boone@naver.com,Olympus,Broken_Lens Mount,Settled
+6,John Locke,2605973,john@gmail.com,Fuji,Dirty Image Sensor,Pending
+7,Desmond Hume,7926309,desmond@yahoo.com,Kodak,Damaged Card Reader,Pending
+8,Charlie Pace,7173547,charlie@gmail.com,Sony,Damaged Card Reader,Pending
+9,Ben Linus,6398165,ben@gmail.com,Sony,Firmware Update,Settled
+10,Jimsoo Kwon,5024335,jimsoo@yahoo.com,Fuji,Broken Lens Mount,Pending
+11,Sayid Jarrah,3343361,sayid@gmail.com,Nikon,Fungus In Lens,Pending
+12,Sunhwa Kwon,5024332,sunhwa@yahoo.com,Nikon,Broken Lens Mount,Pending 
+13,Shannon Rutherford,2908734,shannon@gmail.com,Olympus,Broken Lens Mount,Pending 
+14,Danielle Rousseau,3899009,danielle@yahoo.com,Kodak,Dirty Image Sensor,Settled
+15,Claire Littleton,5609200,claire@gmail.com,Fuji,Broken Lens Mount,Settled
+16,Walt Lloyd,9853509,walt@yahoo.com,Fuji,Firmware Update,Pending
+17,Michael Dawnson,4568900,michael@gmail.com,Nikon,Firmware Update,Pending
+18,Diluc Ragnvindr,7879078,diluc@yahoo.com,Canon,Broken Lens,Settled
+19,Leena Miller,7348023,leena@gmail.com,Sony,Firmware Update,Pending
+20,Shakur Bling,3655120,shakur@yahoo.com,Sony,Fungus In Lens,Pending 
+21,Jada Crooks,6781111,jada@gmail.com,Canon,Fungus In Lens,Settled
+22,Jada Boland,543-2134,jada@yahoo.com,Canon,Damaged Card Reader,Pending
+23,Tommy Sigh,7256990,tommy@gmail.com,Olympus,Dirty Image Sensor,Settled
+24,Aaliyah Thomas,7890345,aaliyah@yahoo.com,Fuji,Dirty Image Sensor,Pending
+25,Desmond Noel,5678900,desmond@yahoo.com,Kodak,Damaged Card Reader,Pending
+26,Jomal Valentine,3324512,jomal@gmail.com,Olympus,Dirty Image Sensor,Settled 
+27,Barbara Gunnhildr,7670485,barbara@yahoo.com,Canon,Fungus In Lens,Pending
+28,Sarah Augustine,5678321,sarah@gmail.com,Olympus,Fungus In Lens,Settled
+29,Melissa Swan,6715483,melissa@yahoo.com,Nikon,Fungus In Lens,Pending
+30,Candice Regis,4534251,candice@gmail.com,Nikon,Broken Lens Mount,Pending 
+31,Shannon Gould,4652113,shannon@yahoo.com,Fuji,Broken Lens Mount,Pending
+32,Carlisa Richards,7442112,carlisa@gmail.com,Sony,Fungus In Lens,Settled
+33,Peter Eli,3407090,peter@yahoo.com,Fuji,Broken Lens Mount,Settled
+34,Niel Young,3000012,niel@gmail.com,Nikon,Dirty Image Sensor,Settled
+35,Angel Smith,3395560,angel@yahoo.com,Kodak,Firmware Update,Pending
+36,Sydney Webb,3367854,sydney@gmail.com,Olympus,Firmware Update,Settled
+37,Jethro Gibbs,12345678,gibbs@gmail.com,Olympus,Fungus in Lens,Pending
+38,Jethro Gibbs,1234578,gibbs@gmail.com,Olympus,Fungus in Lens,Pending

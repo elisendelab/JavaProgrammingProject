@@ -1,0 +1,17 @@
+Monitors,5
+Lenses,5
+Flashes,13
+Batteries,18
+Springs,17
+DScrews,8
+PScrews,5
+SScrews,5
+BallBearings,7
+LensMount,9
+GrubScrews,5
+Capacitors,5
+Bulbs,6
+Gears,2
+Motors,7
+Switches,5
+FlashTubes,5
